@@ -1,18 +1,34 @@
 import React from 'react'
-import products from '../products'
+//import products from '../products'
 import { useParams } from "react-router-dom"
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import { Rating } from '../components/Rating'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 export const ProductScreen = () => {
-
+    const [product, setProduct] = useState(null);
     const { id: productId } = useParams();
-    const product = products.find(
-        (p) => p._id === productId
-    )
-
-    console.log(product);
+    // const product = products.find(
+    //     (p) => p._id === productId
+    // )
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const { data } = await axios.get(`/api/product/${productId}`);
+                setProduct(data);
+            } catch (error) {
+                console.error('Error fetching the product:', error);
+            }
+        };
+        fetchProduct();
+    }, [productId]);
+    // Check if product is not loaded yet
+    if (!product) {
+        return <div>Loading...</div>; // Show a loading message or spinner
+    }
+    //console.log(product);
 
     return (
         <>
@@ -36,7 +52,7 @@ export const ProductScreen = () => {
                                 text={`${product.numReviews}`}
                             />
                         </ListGroup.Item>
-                        
+
                         <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
 
                         <ListGroup.Item>Description :{product.description}
@@ -62,19 +78,19 @@ export const ProductScreen = () => {
                                     <Col>Status:</Col>
                                     <Col>
                                         {
-                                            product.countInStock > 0 ? 'In Stock':
-                                                                        'Out Of Stock'
+                                            product.countInStock > 0 ? 'In Stock' :
+                                                'Out Of Stock'
                                         }
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
-                                <Button 
-                                        className='btn-block'
-                                        type='button'
-                                        disabled={product.countInStock===0}
-                                
+                                <Button
+                                    className='btn-block'
+                                    type='button'
+                                    disabled={product.countInStock === 0}
+
                                 >
                                     Add To Cart
                                 </Button>
