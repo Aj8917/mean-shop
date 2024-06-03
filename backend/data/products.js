@@ -1,6 +1,6 @@
 const products = [
     {
-      _id: '1',
+     
       name: 'Apple iPhone 13 Pro',
       image: '/images/airpods.jpg',
       description: 'The latest iPhone with A15 Bionic chip and advanced camera system.',
@@ -12,7 +12,7 @@ const products = [
       numReviews: 120
     },
     {
-      _id: '2',
+      
       name: 'Samsung Galaxy S21',
       image: '/images/alexa.jpg',
       description: 'High-end smartphone with an immersive display and powerful performance.',
@@ -24,7 +24,6 @@ const products = [
       numReviews: 90
     },
     {
-      _id: '3',
       name: 'Sony WH-1000XM4',
       image: '/images/camera.jpg',
       description: 'Industry-leading noise-canceling headphones with superior sound quality.',
@@ -36,7 +35,7 @@ const products = [
       numReviews: 150
     },
     {
-      _id: '4',
+      
       name: 'Dell XPS 13',
       image: '/images/mouse.jpg',
       description: 'Compact and powerful laptop with a stunning 4K display.',
@@ -48,7 +47,7 @@ const products = [
       numReviews: 75
     },
     {
-      _id: '5',
+      
       name: 'Nike Air Max 270',
       image: '/images/phone.jpg',
       description: 'Stylish and comfortable sneakers with excellent cushioning.',
@@ -60,7 +59,7 @@ const products = [
       numReviews: 200
     },
     {
-      _id: '6',
+     
       name: 'KitchenAid Artisan Stand Mixer',
       image: '/images/playstation.jpg',
       description: 'Versatile and durable stand mixer perfect for all your baking needs.',
