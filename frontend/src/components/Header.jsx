@@ -1,13 +1,15 @@
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { FaShoppingCart, FaUser } from 'react-icons/fa';
-import { LinkContainer ,Badge } from 'react-router-bootstrap'
 
+import { Navbar, Nav, Container,Badge } from 'react-bootstrap';
+import { FaShoppingCart, FaUser } from 'react-icons/fa';
+import { LinkContainer } from 'react-router-bootstrap'
+//import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-export const Header = () => {
+ const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
-  
-  return (
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
@@ -39,3 +41,4 @@ export const Header = () => {
     </header>
   );
 };
+export default Header;

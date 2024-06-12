@@ -16,7 +16,9 @@ import store from './store.js';
 import {LoginScreen} from './screens/LoginScreen';
 import { HomeScreen } from './screens/HomeScreen';
 import { ProductScreen } from './screens/ProductScreen';
-import {CartScreen } from './screens/CartScreen';
+// src/index.js
+import CartScreen from './screens/CartScreen.jsx';
+
 
 
 
@@ -30,6 +32,7 @@ const router = createBrowserRouter(
     </Route>
   )
 )
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
