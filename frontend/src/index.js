@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'react-bootstrap';
 import 'react-toastify/dist/ReactToastify.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   createBrowserRouter,
   createRoutesFromElements,
