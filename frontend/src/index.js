@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -13,12 +14,12 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store.js';
-import {LoginScreen} from './screens/LoginScreen';
+//import {LoginScreen} from './screens/LoginScreen';
 import { HomeScreen } from './screens/HomeScreen';
 import { ProductScreen } from './screens/ProductScreen';
 // src/index.js
 import CartScreen from './screens/CartScreen.jsx';
-
+import LoginScreen from './screens/LoginScreen';
 
 
 
@@ -40,6 +41,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
      <RouterProvider router={router} />
+     
      </Provider>
   </React.StrictMode>
 );
