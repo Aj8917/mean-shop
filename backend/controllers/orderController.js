@@ -51,10 +51,16 @@ const addOrderItems =asyncHandler (async(req,res)=>{
 //@route get /api/orders/myorders
 //@access private
 const getMyOrders =asyncHandler (async(req,res)=>{
-  const orders =await Order.find({ user:req.user_id});
+  const orders =await Order.find({ user:req.user._id});
   
+  if (orders) {
     res.status(200)
-       .json(orders);
+    .json(orders);
+  } else {
+    res.status(404);
+    throw new Error('Order not found');
+  }
+   
 });
 
 //@desc Get Order by ID
