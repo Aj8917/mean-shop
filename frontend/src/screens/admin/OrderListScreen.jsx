@@ -1,7 +1,7 @@
 import React from 'react'
 import { useGetOrdersQuery } from '../../slices/orderApiSlice'
 import { Button, Table} from 'react-bootstrap';
-import {FaTimes} from 'react-icons/fa';
+import {FaCheckDouble, FaTimes} from 'react-icons/fa';
 import Message from '../../components/Message';
 import { Loader } from '../../components/Loader';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -43,11 +43,16 @@ const OrderListScreen = () => {
                          </td>
                          <td>
                          {
-                                     order.isDelivered ?
-                                     (order.isDelivered.substring(0,10))
-                                     :(
-                                                 <FaTimes style={{ color: 'red'}}/>
+                                     order.isDeliverd ? (
+                                        typeof order.isDeliverd === 'string' ? (
+                                            order.isDeliverd.substring(0, 10)
+                                        ) : (
+                                            <FaCheckDouble style={{ color: 'green' }}/>
+                                            
                                         )
+                                    ) : (
+                                        <FaTimes style={{ color: 'red' }}/>
+                                    )
                              }
                          </td>
                          <td>
