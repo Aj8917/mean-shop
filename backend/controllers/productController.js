@@ -51,4 +51,35 @@ const createProduct =asyncHandler(async(req,res)=>{
     res.status(201).json(createProduct);
 })
 
-export {getPrducts,getPrductById ,createProduct};
+const updateProduct =asyncHandler(async (req , res)=>{
+    const { 
+        name,
+        image,
+        description,
+        brand,
+        category,
+        price,
+        countInStock,
+     } =req.body;
+
+     const product = await Product.findById(req.params.id);
+
+     if(product){
+        product.name=name;
+        product.image=image;
+        product.description=description;
+        product.brand=brand;
+        product.category=category;
+        product.price=price;
+        product.countInStock=countInStock;
+
+        const updateProduct =await product.save();
+
+        res.json(updateProduct);
+     }else{
+        res.status(404);
+        throw new Error('Resource not found');
+     }
+});
+
+export {getPrducts,getPrductById ,createProduct , updateProduct};

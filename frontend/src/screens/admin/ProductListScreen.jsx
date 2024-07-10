@@ -3,10 +3,10 @@ import { Row, Col, Button, Table } from 'react-bootstrap';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import Message from '../../components/Message';
 import { Loader } from '../../components/Loader';
-import { LinkContainer } from 'react-router-bootstrap';
+
 import { useGetProductsQuery,useCreateProductMutation } from '../../slices/productsApiSlice'
 import {toast} from 'react-toastify';
-
+import { Link, useParams } from 'react-router-dom';
 
 
 
@@ -69,11 +69,14 @@ const ProductListScreen = () => {
                          <td>{product.category}</td>
                          <td> {product.brand}</td>
                          <td>
-                             <LinkContainer to={`admin/product/${product._id}/edit`}>
-                              <Button className='btn-sm mx-2' variant='light'>
-                                 <FaEdit />
-                              </Button>
-                             </LinkContainer>
+                              <Button
+                      as={Link}
+                      to={`/admin/product/${product._id}/edit`}
+                      variant='light'
+                      className='btn-sm mx-2'
+                    >
+                      <FaEdit />
+                    </Button>
                              <Button variant='danger' className='btn-sm' 
                                 onClick={()=>deleteHandler(product._id)}
                              >
