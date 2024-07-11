@@ -4,7 +4,10 @@ import { FaTrash, FaEdit } from 'react-icons/fa';
 import Message from '../../components/Message';
 import { Loader } from '../../components/Loader';
 
-import { useGetProductsQuery,useCreateProductMutation } from '../../slices/productsApiSlice'
+import { useGetProductsQuery,
+         useCreateProductMutation,
+         useDeleteProductMutation
+        } from '../../slices/productsApiSlice'
 import {toast} from 'react-toastify';
 import { Link, useParams } from 'react-router-dom';
 
@@ -16,8 +19,18 @@ const ProductListScreen = () => {
 
     const [createProduct , {isLoading: loadingCreate}]= useCreateProductMutation();
 
-    const deleteHandler=(id)=>{
-        console.log(id);
+    const [ deleteProduct , {isLoading : loadingDelete}]=useDeleteProductMutation();
+
+    const deleteHandler=async(id)=> {
+        if(window.confirm('Are You Sure ? ')){
+            try {
+                await deleteProduct(id);
+                refetch();
+                toast.success('Product removed succefully !');
+            } catch (err) {
+                toast.error(err?.data?.message || err.error);
+            }
+        }
     }
 
     const createProductHandler =async () =>{
@@ -46,6 +59,7 @@ const ProductListScreen = () => {
                 </Col>
             </Row>
             {loadingCreate && <Loader />}
+            {loadingDelete && <Loader />}
             
             {isLoading ? <Loader /> :error ? <Message variant='danger'>{error}</Message> :(
                 <>
