@@ -6,12 +6,15 @@ import Product from '../models/productModel.js';
 //@route GET /api/products
 //@access Public
 const getPrducts =asyncHandler (async(req,res)=>{
-    const products = await Product.find({});
-    if (products) {
-        res.json(products);
-    }
-
-     res.status(404).json({ message: 'Products Not Found' });
+    
+    const pageSize =3;
+    const page = Number(req.query.pageNumber) || 1;
+    const count =await Product.countDocuments();
+    
+    const products = await Product.find({})
+                                  .limit(pageSize)
+                                  .skip(pageSize * (page-1));
+                                  res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 
