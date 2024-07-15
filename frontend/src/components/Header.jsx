@@ -3,17 +3,18 @@ import React from 'react';
 import { Navbar, Nav, Container, Badge, NavDropdown } from 'react-bootstrap';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap'
-import { Navigate, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import { useSelector ,useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
+import SearchBox from './SearchBox';
 
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [logoutApiCall] = useLogoutMutation();
 
@@ -23,7 +24,7 @@ const Header = () => {
       await logoutApiCall().unwrap();
       dispatch(logout());
       
-      Navigate('/login');
+      navigate('/login');
 
     } catch (err) {
       console.error('Logout failed: ', err); // Print the error to the console
@@ -41,6 +42,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
+              <SearchBox />
               <LinkContainer to='/cart'>
                 <Nav.Link>
                   <FaShoppingCart /> Cart
