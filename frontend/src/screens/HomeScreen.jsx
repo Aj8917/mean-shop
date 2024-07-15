@@ -14,6 +14,7 @@ import { Product } from '../components/Product'
 
 import Product from '../components/Product';
 import Messsage from '../components/Messsage';
+import ProductCarousel from '../components/ProductCarousel';
 export const HomeScreen = () => {
 
     const { pageNumber,keyword } = useParams();
@@ -39,10 +40,11 @@ export const HomeScreen = () => {
     return (
         <>
             {
-                keyword && 
+                !keyword ?<ProductCarousel /> :( 
                 <Link to='/' className='btn btn-light'>
                     Go Back
                 </Link>
+                )
             }
             {
                 isLoading ? (<Loader />)
